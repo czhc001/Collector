@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sample_rate_list">
+        <item>慢</item>
+        <item>普通</item>
+        <item>较快</item>
+        <item>最快</item>
+    </string-array>
+</resources>

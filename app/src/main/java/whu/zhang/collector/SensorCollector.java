@@ -38,6 +38,12 @@ public class SensorCollector {
         }
     }
 
+    private void queueClear(){
+        synchronized (cached){
+            cached.clear();
+        }
+    }
+
 
     public SensorCollector(Context context, int sensor_type, int sample_rate_level){
         sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
@@ -75,6 +81,7 @@ public class SensorCollector {
                     }
                 }
                 write();
+                queueClear();
                 isRunning = false;
             }
         });

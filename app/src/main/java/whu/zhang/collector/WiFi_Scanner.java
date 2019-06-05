@@ -11,6 +11,7 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -245,7 +246,8 @@ public class WiFi_Scanner {
                             int len = cached_bt.size();
                             for(int i = 0; i < len; ++i){
                                 MyRSS rss = cached_bt.get(i);
-                                String line = rss.timestamp + "," + rss.mac + "," + rss.name + "," + rss.rss + "\r\n";
+                                String line = rss.timestamp + "," + rss.mac + "," + new String(rss.name.getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8) + "," + rss.rss + "\r\n";
+                                Log.e("iBeacon", line);
                                 dataWriter.write(line);
                             }
                             dataWriter.close();

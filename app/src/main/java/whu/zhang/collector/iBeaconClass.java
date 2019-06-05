@@ -63,10 +63,10 @@ public class iBeaconClass {
         }
 
 
-        if (patternFound == false) {
+        //if (patternFound == false) {
             // This is not an iBeacon
-            return null;
-        }
+        //    return null;
+        //}
 
 
         iBeacon iBeacon = new iBeacon();
@@ -104,7 +104,10 @@ public class iBeaconClass {
 
         if (device != null) {
             iBeacon.bluetoothAddress = device.getAddress();
-            iBeacon.name = device.getName();
+            if(device.getName() != null)
+                iBeacon.name = new String(device.getName());
+            else
+                iBeacon.name = "";
         }
 
         return iBeacon;

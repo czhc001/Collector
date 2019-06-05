@@ -188,6 +188,7 @@ public class WiFi_Scanner {
                             e.printStackTrace();
                         }
                         bTScanner.stopScan(mLeScanCallback);
+                        writeBle();
                         bt_scanning = false;
                     }
                 });
@@ -211,26 +212,30 @@ public class WiFi_Scanner {
     ArrayList<MyRSS> cached_bt = new ArrayList<>(1000);
     long lastBtT = 0;
 
+    private void writeBle(){
+        File file = new File(ibeacon_path);
+        try {
+            DataWriter dataWriter = new DataWriter(file, true);
+            int len = cached_bt.size();
+            for(int i = 0; i < len; ++i){
+                MyRSS rss = cached_bt.get(i);
+                String line = rss.timestamp + "," + rss.mac + "," + new String(rss.name.getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8) + "," + rss.rss + "\r\n";
+                Log.e("iBeacon", line);
+                dataWriter.write(line);
+            }
+            dataWriter.close();
+            cached_bt.clear();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
     private ScanCallback mLeScanCallback =
             new ScanCallback() {
                 @Override
                 public void onScanResult(int callbackType, android.bluetooth.le.ScanResult result) {
                     long current_t = System.currentTimeMillis();
                     if(!bt_allow) {
-                        File file = new File(ibeacon_path);
-                        try {
-                            DataWriter dataWriter = new DataWriter(file, true);
-                            int len = cached_bt.size();
-                            for(int i = 0; i < len; ++i){
-                                MyRSS rss = cached_bt.get(i);
-                                String line = rss.timestamp + "," + rss.mac + "," + rss.name + "," + rss.rss + "\r\n";
-                                dataWriter.write(line);
-                            }
-                            dataWriter.close();
-                            cached_bt.clear();
-                        }catch (IOException e){
-                            e.printStackTrace();
-                        }
+                        writeBle();
                         return;
                     }
 
@@ -240,21 +245,7 @@ public class WiFi_Scanner {
                     MyRSS item = new MyRSS(ibeacon.name, ibeacon.bluetoothAddress, ibeacon.rssi, current_t);
                     cached_bt.add(item);
                     if(current_t - lastBtT > 1000 && cached_bt.size() > 0) {
-                        File file = new File(ibeacon_path);
-                        try {
-                            DataWriter dataWriter = new DataWriter(file, true);
-                            int len = cached_bt.size();
-                            for(int i = 0; i < len; ++i){
-                                MyRSS rss = cached_bt.get(i);
-                                String line = rss.timestamp + "," + rss.mac + "," + new String(rss.name.getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8) + "," + rss.rss + "\r\n";
-                                Log.e("iBeacon", line);
-                                dataWriter.write(line);
-                            }
-                            dataWriter.close();
-                            cached_bt.clear();
-                        }catch (IOException e){
-                            e.printStackTrace();
-                        }
+                        writeBle();
                         lastBtT = current_t;
                     }
                 }

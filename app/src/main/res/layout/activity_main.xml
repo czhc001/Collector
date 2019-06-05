@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_height="0dp"
+        android:layout_weight="9">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp">
                 <TextView
-                    android:layout_width="170dp"
+                    android:layout_width="160dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="加速度"
@@ -28,10 +28,9 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/tv_acc"/>
                 <Spinner
-                    android:layout_width="120dp"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/spinner_acc"
-                    android:layout_marginStart="10dp"
                     android:textSize="22sp"
                     app:layout_constraintStart_toEndOf="@id/tv_acc"
                     app:layout_constraintTop_toTopOf="@id/tv_acc"
@@ -54,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp">
                 <TextView
-                    android:layout_width="170dp"
+                    android:layout_width="160dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="角速度"
@@ -63,10 +62,9 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/tv_gyr" />
                 <Spinner
-                    android:layout_width="120dp"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/spinner_gyr"
-                    android:layout_marginStart="10dp"
                     android:textSize="22sp"
                     app:layout_constraintStart_toEndOf="@id/tv_gyr"
                     app:layout_constraintTop_toTopOf="@id/tv_gyr"
@@ -88,7 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp">
                 <TextView
-                    android:layout_width="170dp"
+                    android:layout_width="160dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="磁场"
@@ -97,10 +95,9 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/tv_mag" />
                 <Spinner
-                    android:layout_width="120dp"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/spinner_mag"
-                    android:layout_marginStart="10dp"
                     android:textSize="22sp"
                     app:layout_constraintStart_toEndOf="@id/tv_mag"
                     app:layout_constraintTop_toTopOf="@id/tv_mag"
@@ -122,7 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp">
                 <TextView
-                    android:layout_width="170dp"
+                    android:layout_width="160dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="加速度(未校正)"
@@ -131,10 +128,9 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/tv_uacc"/>
                 <Spinner
-                    android:layout_width="120dp"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/spinner_uacc"
-                    android:layout_marginStart="10dp"
                     android:textSize="22sp"
                     app:layout_constraintStart_toEndOf="@id/tv_uacc"
                     app:layout_constraintTop_toTopOf="@id/tv_uacc"
@@ -157,7 +153,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp">
                 <TextView
-                    android:layout_width="170dp"
+                    android:layout_width="160dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="角速度(未校正)"
@@ -166,10 +162,9 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/tv_ugyr" />
                 <Spinner
-                    android:layout_width="120dp"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/spinner_ugyr"
-                    android:layout_marginStart="10dp"
                     android:textSize="22sp"
                     app:layout_constraintStart_toEndOf="@id/tv_ugyr"
                     app:layout_constraintTop_toTopOf="@id/tv_ugyr"
@@ -191,7 +186,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp">
                 <TextView
-                    android:layout_width="170dp"
+                    android:layout_width="160dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="磁场(未校正)"
@@ -200,10 +195,9 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/tv_umag" />
                 <Spinner
-                    android:layout_width="120dp"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/spinner_umag"
-                    android:layout_marginStart="10dp"
                     android:textSize="22sp"
                     app:layout_constraintStart_toEndOf="@id/tv_umag"
                     app:layout_constraintTop_toTopOf="@id/tv_umag"
@@ -225,7 +219,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp">
                 <TextView
-                    android:layout_width="170dp"
+                    android:layout_width="160dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="光照"
@@ -234,10 +228,9 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/tv_light" />
                 <Spinner
-                    android:layout_width="120dp"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/spinner_light"
-                    android:layout_marginStart="10dp"
                     android:textSize="22sp"
                     app:layout_constraintStart_toEndOf="@id/tv_light"
                     app:layout_constraintTop_toTopOf="@id/tv_light"
@@ -259,7 +252,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp">
                 <TextView
-                    android:layout_width="170dp"
+                    android:layout_width="160dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="压力"
@@ -268,10 +261,9 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/tv_pres" />
                 <Spinner
-                    android:layout_width="120dp"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/spinner_pres"
-                    android:layout_marginStart="10dp"
                     android:textSize="22sp"
                     app:layout_constraintStart_toEndOf="@id/tv_pres"
                     app:layout_constraintTop_toTopOf="@id/tv_pres"
@@ -293,7 +285,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp">
                 <TextView
-                    android:layout_width="170dp"
+                    android:layout_width="160dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="接近"
@@ -302,10 +294,9 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/tv_prox" />
                 <Spinner
-                    android:layout_width="120dp"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/spinner_prox"
-                    android:layout_marginStart="10dp"
                     android:textSize="22sp"
                     app:layout_constraintStart_toEndOf="@id/tv_prox"
                     app:layout_constraintTop_toTopOf="@id/tv_prox"
@@ -327,7 +318,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp">
                 <TextView
-                    android:layout_width="170dp"
+                    android:layout_width="160dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="环境温度"
@@ -336,10 +327,9 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/tv_temp" />
                 <Spinner
-                    android:layout_width="120dp"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/spinner_temp"
-                    android:layout_marginStart="10dp"
                     android:textSize="22sp"
                     app:layout_constraintStart_toEndOf="@id/tv_temp"
                     app:layout_constraintTop_toTopOf="@id/tv_temp"
@@ -356,16 +346,38 @@
                     app:layout_constraintBottom_toBottomOf="@id/tv_temp"
                     android:id="@+id/tv_temp_"/>
             </android.support.constraint.ConstraintLayout>
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <TextView
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:text="Wi-Fi"
+                    android:id="@+id/tvw"
+                    android:textSize="22sp"
+                    android:layout_marginStart="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:text="iBeacon"
+                    android:id="@+id/tvb"
+                    android:textSize="22sp"
+                    android:layout_marginStart="10dp"
+                    app:layout_constraintStart_toEndOf="@id/tvw"
+                    app:layout_constraintTop_toTopOf="parent"/>
+            </android.support.constraint.ConstraintLayout>
 
         </LinearLayout>
 
     </ScrollView>
     <Button
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:text="开  始"
         android:textSize="40sp"
         android:id="@+id/bt_start"/>
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

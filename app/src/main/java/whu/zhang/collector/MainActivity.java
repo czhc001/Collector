@@ -37,9 +37,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ArrayList<ArrayAdapter> adapters = new ArrayList<>(10);
     private ArrayList<Spinner> spinners = new ArrayList<>(10);
     private Button bt;
-    private String[] sensor_name = new String[]{"加速度", "角速度", "磁场", "加速度(未校正)", "角速度(未校正)", "磁场(未校正)", "光照", "接近", "压力", "温度", "Wi-Fi", "Bluetooth"};
-
-    private String root_dir = "SensorData___";
+    private String[] sensor_name = new String[]{"加速度", "角速度", "磁场", "加速度(未校正)", "角速度(未校正)", "磁场(未校正)", "光照", "接近", "压力", "温度", "Wi-Fi", "iBeacon"};
+    private TextView tvw, tvb;
+    private WiFi_Scanner wifi_scanner;
+    private String root_dir = "SensorData_";
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
 
     Handler handler = new Handler(){
@@ -54,6 +55,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     TextView tv = (TextView) msg.obj;
                     tv.setText("可用");
                 }break;
+                case 2:{
+                    tvw.setText("Wi-Fi");
+                }break;
+                case 3:{
+                    tvb.setText("iBeacon");
+                }
             }
         }
     };
@@ -90,6 +97,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_temp = findViewById(R.id.tv_temp_);
         tv_prox = findViewById(R.id.tv_prox_);
         tv_pres = findViewById(R.id.tv_pres_);
+
+        tvw = findViewById(R.id.tvw);
+        tvb = findViewById(R.id.tvb);
 
         bt = findViewById(R.id.bt_start);
         bt.setOnClickListener(this);
@@ -152,6 +162,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
 
+        wifi_scanner = new WiFi_Scanner(this);
+
         File file = new File(Environment.getExternalStorageDirectory(), root_dir + Build.MODEL);
         if(!file.exists()){
             while(!file.mkdir()){
@@ -197,6 +209,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             tv.setText("采集中");
                         }
                     }
+                    wifi_scanner.setPath(dir.getAbsolutePath());
+                    wifi_scanner.startScan();
+                    tvb.setText("iBeacon采集中");
+                    tvw.setText("Wi-Fi采集中");
+
+
                     collecting = true;
                     bt.setText("停止");
                 }else {
@@ -208,6 +226,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             tv.setText("停止中");
                         }
                     }
+                    wifi_scanner.stop();
                     bt.setText("停止中");
                     bt.setEnabled(false);
                     new Thread(new Runnable() {
@@ -230,8 +249,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         }
                                     }
                                 }
+                                if(!wifi_scanner.bt_scanning){
+                                    handler.sendEmptyMessage(3);
+                                }
+                                else {
+                                    running = true;
+                                }
+
+                                if(!wifi_scanner.wifi_scanning){
+                                    handler.sendEmptyMessage(2);
+                                }
+                                else {
+                                    running = true;
+                                }
                                 if(!running) {
                                     handler.sendEmptyMessage(0);
+                                    collecting = false;
                                     break;
                                 }
                                 try {

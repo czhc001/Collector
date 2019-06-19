@@ -93,6 +93,7 @@ public class SensorCollector {
     public void stop(){
         sensorManager.unregisterListener(sensorEventListener, sensor);
         allow = false;
+        queueClear();
     }
 
     private void write(){

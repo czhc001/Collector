@@ -63,10 +63,10 @@ public class iBeaconClass {
         }
 
 
-        //if (patternFound == false) {
+        if (patternFound == false) {
             // This is not an iBeacon
-        //    return null;
-        //}
+            return null;
+        }
 
 
         iBeacon iBeacon = new iBeacon();
